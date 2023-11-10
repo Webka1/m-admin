@@ -1,5 +1,8 @@
 import './globals.css'
 import {Providers} from "@/app/providers";
+import { Inter } from 'next/font/google'
+
+const inter = Inter({ subsets: ['latin'] })
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -7,7 +10,7 @@ const defaultUrl = process.env.VERCEL_URL
 
 export const metadata = {
   metadataBase: new URL(defaultUrl),
-  title: 'Модуль "Админ-Панель"',
+  title: 'Модуль "$$$ADM1NKA$$$',
   description: 'Для $$$KURS4CH$$$',
 }
 
@@ -18,7 +21,7 @@ export default function RootLayout({
 }) {
   return (
       <html lang="en">
-        <body>
+        <body className={inter.className}>
           <Providers>
             {children}
           </Providers>
