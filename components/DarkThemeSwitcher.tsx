@@ -2,7 +2,7 @@
 
 import {Button, useColorMode} from "@chakra-ui/react";
 import {MoonIcon, SunIcon} from "@chakra-ui/icons";
-import {DarkThemeSwitcherProps} from "@/types/props";
+import {DarkThemeSwitcherProps} from "@/utils/props";
 export default function DarkThemeSwitcher({ variant }: DarkThemeSwitcherProps) {
 
    const { colorMode, toggleColorMode } = useColorMode()

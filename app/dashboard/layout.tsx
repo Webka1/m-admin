@@ -1,3 +1,6 @@
+import Navbar from "@/components/Navbar";
+import {Container} from "@chakra-ui/react";
+
 const defaultUrl = process.env.VERCEL_URL
     ? `https://${process.env.VERCEL_URL}`
     : 'http://localhost:3000'
@@ -16,7 +19,10 @@ export default async function RootLayout({
 
     return (
         <>
-            {children}
+            <Container maxW={`container.xl`}>
+                <Navbar/>
+                {children}
+            </Container>
         </>
     )
 }
