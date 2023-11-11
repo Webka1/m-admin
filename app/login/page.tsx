@@ -2,7 +2,7 @@
 
 import {Alert, Box, Button, Container, FormControl, FormLabel, Input, Text} from "@chakra-ui/react";
 import {createBrowserClient} from "@supabase/ssr";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {useRouter} from "next/navigation";
 
 export default function Login() {
@@ -15,6 +15,18 @@ export default function Login() {
 
   const supabase = createBrowserClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!)
   const router = useRouter()
+
+  const getAuthInfo = async () => {
+    const {data: {user}} = await supabase.auth.getUser()
+
+    if(user?.email) {
+      return router.push('/dashboard')
+    }
+  }
+
+  useEffect(() => {
+    getAuthInfo()
+  }, [])
 
   const signIn = async () => {
     setIsAuthLoading(true)
