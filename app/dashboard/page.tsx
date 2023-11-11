@@ -12,9 +12,8 @@ export default async function Index() {
 
 
     return (
-        <div>
-            Hello from dashboard
-            <AuthButton/>
-        </div>
+        <>
+            Hel(o)
+        </>
     )
 }

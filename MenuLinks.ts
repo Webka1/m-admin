@@ -4,7 +4,7 @@ const MenuLinks:IMenuLinks[] =   [
     {
         name: 'Главная',
         is_single: true,
-        url: '/dashboard'
+        url: '/dashboard',
     },
     {
         name: 'Настройки сайта',
@@ -14,42 +14,45 @@ const MenuLinks:IMenuLinks[] =   [
     {
         name: 'Пользователи',
         is_single: false,
+        prefix: '/customers',
         links: [
             {
                 name: 'Все пользователи',
-                url: '/dashboard/customers/'
+                url: '/'
             },
             {
                 name: 'Добавить пользователя',
-                url: '/dashboard/customers/new'
+                url: '/new'
             }
         ]
     },
     {
         name: 'Заказы',
         is_single: false,
+        prefix: '/orders',
         links: [
             {
                 name: 'Все заказы',
-                url: '/dashboard/orders/'
+                url: '/'
             },
             {
                 name: 'Создать заказ',
-                url: '/dashboard/orders/new'
+                url: '/new'
             }
         ]
     },
     {
         name: 'Товары',
         is_single: false,
+        prefix: '/items',
         links: [
             {
                 name: 'Все товары',
-                url: '/dashboard/items/'
+                url: '/'
             },
             {
                 name: 'Добавить товар',
-                url: '/dashboard/items/add'
+                url: '/add'
             }
         ]
     }

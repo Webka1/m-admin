@@ -1,4 +1,5 @@
 'use client'
+
 import {
     Box,
     Button, ButtonGroup,
@@ -8,10 +9,11 @@ import {
 } from "@chakra-ui/react";
 import DarkThemeSwitcher from "@/components/DarkThemeSwitcher";
 import {createBrowserClient} from "@supabase/ssr";
-import {useRouter} from "next/navigation";
+import {usePathname, useRouter} from "next/navigation";
 import Link from "next/link";
 import {IMenuLink} from "@/utils/interface";
 import MenuLinks from "@/MenuLinks";
+import {CheckIcon} from "@chakra-ui/icons";
 
 export default function Navbar() {
     return (
@@ -28,7 +30,7 @@ export default function Navbar() {
                 <Box>
                     <ButtonGroup>
                         <DarkThemeSwitcher variant={`button`}/>
-                        <Button>Настройки</Button>
+                        <Button colorScheme={`orange`}>Настройки</Button>
                         <SignOutButton/>
                     </ButtonGroup>
                 </Box>
@@ -40,23 +42,29 @@ export default function Navbar() {
 
 const NavLinks = () => {
 
+    const pathname = usePathname()
+
+    console.log(pathname)
+
     return (
         <ButtonGroup>
-            {MenuLinks.map((link: IMenuLink) => {
+            {MenuLinks.map((link: IMenuLink, index: number) => {
                 return(
                     link.is_single ? (
                             // @ts-ignore
-                            <Link href={link.url}>
-                                <Button>{link.name}</Button>
+                            <Link key={index} href={link.url}>
+                                <Button colorScheme={pathname === link.url ? 'blue' : 'gray'}>{link.name}</Button>
                             </Link>
                         ) : (
-                        <Menu>
-                            <MenuButton as={Button}>{link.name}</MenuButton>
+                        <Menu key={index}>
+                            <MenuButton colorScheme={pathname.includes(link.prefix as string) ? 'blue' : 'gray'} as={Button}>{link.name}</MenuButton>
                             <MenuList>
-                                {link.links?.map((sublink) => {
+                                {link.links?.map((sublink, index) => {
                                     return(
-                                        <MenuItem>
-                                            <Link href={sublink.url}>{sublink.name}</Link>
+                                        <MenuItem key={index}>
+                                            <Link aria-disabled={true} href={'/dashboard' + link.prefix + sublink.url}>
+                                                {sublink.name}
+                                            </Link>
                                         </MenuItem>
                                     )
                                 })}
