@@ -1,46 +1,36 @@
-import { cookies } from 'next/headers'
-import { createClient } from '@/utils/supabase/server'
-import { redirect } from 'next/navigation'
+'use client'
+
 import {Alert, Box, Button, Container, FormControl, FormLabel, Input, Text} from "@chakra-ui/react";
+import {createBrowserClient} from "@supabase/ssr";
+import {useState} from "react";
+import {useRouter} from "next/navigation";
 
-export default async function Login({
-                                      searchParams,
-                                    }: {
-  searchParams: { message: string }
-}) {
+export default function Login() {
 
-  const cookieStore = cookies()
+  const [email, setEmail] = useState<string>('')
+  const [password, setPassword] = useState<string>('')
 
-  const supabase = createClient(cookieStore)
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
+  const [isAuthLoading, setIsAuthLoading] = useState<boolean>(false)
+  const [authError, setAuthError] = useState<string>('')
 
-  if(user?.email) {
-    redirect('/dashboard')
-  }
+  const supabase = createBrowserClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!)
+  const router = useRouter()
 
-  const signIn = async (formData: FormData) => {
-    'use server'
-
-    const email = formData.get('email') as string
-    const password = formData.get('password') as string
-    const cookieStore = cookies()
-    const supabase = createClient(cookieStore)
-
-    const { error, data } = await supabase.auth.signInWithPassword({
-      email,
-      password,
+  const signIn = async () => {
+    setIsAuthLoading(true)
+    const {data,  error} = await supabase.auth.signInWithPassword({
+      email: email,
+      password: password,
     })
 
-    if (error) {
-      return redirect('/login?message=Invalid login or password')
+    if(error) {
+      setIsAuthLoading(false)
+      setAuthError(error.message)
+    } else {
+      return router.push('/dashboard')
     }
-
-    return redirect('/dashboard')
   }
 
-  // @ts-ignore
   return (
       <Container maxW={`400px`} mt={`4`}>
         <Box bg={`white`} borderRadius={`md`} boxShadow={`lg`} p={'4'}>
@@ -48,21 +38,18 @@ export default async function Login({
             Авторизация
           </Text>
           <Box mt={4} mb={4}>
-            <form action={signIn}>
-              <FormControl>
-                <FormLabel>Почта</FormLabel>
-                <Input outline={`none`} name={`email`} type='text' autoComplete={`false`} placeholder={`example@example.com`} />
-              </FormControl>
-              <FormControl mt={2}>
-                <FormLabel>Пароль</FormLabel>
-                <Input name={`password`} outline={`none`} type='password' placeholder={`********`}/>
-              </FormControl>
-              <Button mt={4} type={`submit`} colorScheme='green'>Войти</Button>
-            </form>
-
-            {searchParams?.message && (
-                <Alert borderRadius={`md`} mt={4} colorScheme={`red`}>{searchParams.message}</Alert>
-            )}
+            <FormControl>
+              <FormLabel>Почта</FormLabel>
+              <Input onChange={(e) => { setEmail(e.target.value) }} outline={`none`} name={`email`} type='text' autoComplete={`false`} placeholder={`example@example.com`} />
+            </FormControl>
+            <FormControl mt={2}>
+              <FormLabel>Пароль</FormLabel>
+              <Input onChange={(e) => { setPassword(e.target.value) }} name={`password`} outline={`none`} type='password' placeholder={`********`}/>
+            </FormControl>
+            <Button isLoading={isAuthLoading} onClick={signIn} mt={4} type={`submit`} colorScheme='green'>Войти</Button>
+            {authError ? (
+                <Alert mt={4} colorScheme={`red`} borderRadius={`md`}>{authError}</Alert>
+            ) : null}
           </Box>
         </Box>
       </Container>
