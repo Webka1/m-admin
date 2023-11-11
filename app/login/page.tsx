@@ -1,7 +1,7 @@
 'use client'
 
 import {
-  Alert,
+  Alert, Box,
   Button,
   ButtonGroup,
   Card,
@@ -16,9 +16,9 @@ import {createBrowserClient} from "@supabase/ssr";
 import {useEffect, useState} from "react";
 import {useRouter} from "next/navigation";
 import DarkThemeSwitcher from "@/components/DarkThemeSwitcher";
+import ResetPasswordModal from "@/components/ResetPasswordModal";
 
 export default function Login() {
-
   const [email, setEmail] = useState<string>('')
   const [password, setPassword] = useState<string>('')
 
@@ -27,7 +27,6 @@ export default function Login() {
 
   const supabase = createBrowserClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!)
   const router = useRouter()
-
   const getAuthInfo = async () => {
     const {data: {user}} = await supabase.auth.getUser()
 
@@ -73,7 +72,7 @@ export default function Login() {
 
             <ButtonGroup mt={4}>
               <Button isLoading={isAuthLoading} onClick={signIn} type={`submit`} colorScheme='green'>Войти</Button>
-              <DarkThemeSwitcher/>
+              <ResetPasswordModal/>
             </ButtonGroup>
 
             {authError ? (
@@ -81,6 +80,9 @@ export default function Login() {
             ) : null}
           </CardBody>
         </Card>
+        <Box mt={2}>
+          <DarkThemeSwitcher variant={`link`}/>
+        </Box>
       </Container>
   )
 }

@@ -2,12 +2,18 @@
 
 import {Button, useColorMode} from "@chakra-ui/react";
 import {MoonIcon, SunIcon} from "@chakra-ui/icons";
-
-export default function DarkThemeSwitcher() {
+import {DarkThemeSwitcherProps} from "@/types/props";
+export default function DarkThemeSwitcher({ variant }: DarkThemeSwitcherProps) {
 
    const { colorMode, toggleColorMode } = useColorMode()
 
    return(
-       <Button type={'button'} onClick={toggleColorMode}>{colorMode === "light" ? <MoonIcon/> : <SunIcon/>}</Button>
+       <>
+          { variant === "button" ? (
+              <Button type={'button'} onClick={toggleColorMode}>{colorMode === "light" ? <MoonIcon/> : <SunIcon/>}</Button>
+          ) : variant === "link" ? (
+              <Button variant={'link'} type={'button'} onClick={toggleColorMode}>{colorMode === "light" ? 'Темная тема' : 'Светлая тема'}</Button>
+          ) : null }
+       </>
    )
 }
