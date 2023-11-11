@@ -7,23 +7,16 @@
 </p>
 <br/>
 
-## Стек
+## Функции
 
-- Works across the entire [Next.js](https://nextjs.org) stack
-  - App Router
-  - Pages Router
-  - Middleware
-  - Client
-  - Server
-  - It just works!
-- supabase-ssr. A package to configure Supabase Auth to use cookies
-- Styling with [Tailwind CSS](https://tailwindcss.com)
-- Optional deployment with [Supabase Vercel Integration and Vercel deploy](#deploy-your-own)
-  - Environment variables automatically assigned to Vercel project
+- Авторизация
+  - Восстановление пароля
+- ну и все хорош
+
 
 ## Демо
 
-Демо не будет)
+<a href="https://m-admin-coral.vercel.app/">https://m-admin-coral.vercel.app/</a>
 
 ## Другое
 Блин ху*ня для курсовой
