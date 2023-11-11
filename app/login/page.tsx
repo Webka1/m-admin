@@ -1,9 +1,21 @@
 'use client'
 
-import {Alert, Box, Button, Container, FormControl, FormLabel, Input, Text} from "@chakra-ui/react";
+import {
+  Alert,
+  Button,
+  ButtonGroup,
+  Card,
+  CardBody,
+  Container,
+  FormControl,
+  FormLabel,
+  Input,
+  Text
+} from "@chakra-ui/react";
 import {createBrowserClient} from "@supabase/ssr";
 import {useEffect, useState} from "react";
 import {useRouter} from "next/navigation";
+import DarkThemeSwitcher from "@/components/DarkThemeSwitcher";
 
 export default function Login() {
 
@@ -45,12 +57,12 @@ export default function Login() {
 
   return (
       <Container maxW={`400px`} mt={`4`}>
-        <Box bg={`white`} borderRadius={`md`} boxShadow={`lg`} p={'4'}>
-          <Text fontSize={`3xl`} as={`b`}>
-            Авторизация
-          </Text>
-          <Box mt={4} mb={4}>
-            <FormControl>
+        <Card borderRadius={`md`} boxShadow={`lg`} p={'4'}>
+          <CardBody mt={4} mb={4}>
+            <Text fontSize={`3xl`} as={`b`}>
+              Авторизация
+            </Text>
+            <FormControl mt={8}>
               <FormLabel>Почта</FormLabel>
               <Input onChange={(e) => { setEmail(e.target.value) }} outline={`none`} name={`email`} type='text' autoComplete={`false`} placeholder={`example@example.com`} />
             </FormControl>
@@ -58,12 +70,17 @@ export default function Login() {
               <FormLabel>Пароль</FormLabel>
               <Input onChange={(e) => { setPassword(e.target.value) }} name={`password`} outline={`none`} type='password' placeholder={`********`}/>
             </FormControl>
-            <Button isLoading={isAuthLoading} onClick={signIn} mt={4} type={`submit`} colorScheme='green'>Войти</Button>
+
+            <ButtonGroup mt={4}>
+              <Button isLoading={isAuthLoading} onClick={signIn} type={`submit`} colorScheme='green'>Войти</Button>
+              <DarkThemeSwitcher/>
+            </ButtonGroup>
+
             {authError ? (
                 <Alert mt={4} colorScheme={`red`} borderRadius={`md`}>{authError}</Alert>
             ) : null}
-          </Box>
-        </Box>
+          </CardBody>
+        </Card>
       </Container>
   )
 }
