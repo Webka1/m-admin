@@ -1,6 +1,5 @@
-import {Card, CardBody, StatGroup, Tag, Text} from "@chakra-ui/react";
+import {Box, Card, CardBody, StatGroup, Tag, Text} from "@chakra-ui/react";
 import {Stat, StatHelpText, StatLabel, StatNumber} from "@chakra-ui/stat";
-import {useState} from "react";
 
 import {createBrowserClient} from "@supabase/ssr";
 const supabase = createBrowserClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!)
@@ -8,15 +7,25 @@ const supabase = createBrowserClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, proc
 export default function Stats() {
 
     return(
-        <Card mt={8}>
-            <CardBody>
-                <StatGroup>
-                    <TotalCustomers/>
-                    <TotalOrders/>
-                    <TotalItems/>
-                </StatGroup>
-            </CardBody>
-        </Card>
+        <Box mt={8}>
+            <Text fontSize={`2xl`}>Общая статистика</Text>
+            <Card mt={4}>
+                <CardBody>
+                    <StatGroup>
+                        <TotalCustomers/>
+                        <TotalOrders/>
+                        <TotalItems/>
+                    </StatGroup>
+                </CardBody>
+            </Card>
+            <Card mt={4}>
+                <CardBody>
+                    <StatGroup>
+                        <UsersToday/>
+                    </StatGroup>
+                </CardBody>
+            </Card>
+        </Box>
     )
 }
 
@@ -132,6 +141,42 @@ const TotalItems = async () => {
                     { error ? (
                         <Text color={`red`}>{error.message}</Text>
                     ) : 'Доступно к покупке' }
+                </>
+            }
+        />
+    )
+}
+
+
+const UsersToday = async () => {
+    const { count, error} = await supabase.from('customers').select('id',{
+        count: 'exact'
+    }).match({
+        registred_date: new Date().toLocaleDateString()
+    })
+
+    return(
+        <StatBlock
+            statLabel={
+                <>
+                    Пользователей
+                    { error ? (
+                        <Tag variant={`solid`} colorScheme={`red`} size={`sm`}>Ошибка</Tag>
+                    ) : ''}
+                </>
+            }
+            statNumber={
+                error ? (
+                    <Text color={`red`}>{error.code}</Text>
+                ) : (
+                    <Text>{count}</Text>
+                )
+            }
+            statHelpText={
+                <>
+                    { error ? (
+                        <Text color={`red`}>{error.message}</Text>
+                    ) : 'Зарегистрировано сегодня' }
                 </>
             }
         />

@@ -21,6 +21,18 @@ const MenuLinks:IMenuLinks[] =   [
                 url: '/'
             },
             {
+                name: 'Подтвержденные пользователи',
+                url: '/confirmed'
+            },
+            {
+                name: 'Неподтвержденные пользователи',
+                url: '/unconfirmed'
+            },
+            {
+                name: 'Забаненные пользователи',
+                url: '/banned'
+            },
+            {
                 name: 'Добавить пользователя',
                 url: '/new'
             }
@@ -36,9 +48,29 @@ const MenuLinks:IMenuLinks[] =   [
                 url: '/'
             },
             {
+                name: 'Созданные заказы',
+                url: '/created'
+            },
+            {
+                name: 'Подтвержденные заказы',
+                url: '/confirmed'
+            },
+            {
+                name: 'Ожидающие оплаты',
+                url: '/wfp'
+            },
+            {
+                name: 'Активные заказы',
+                url: '/process'
+            },
+            {
+                name: 'Выполненные заказы',
+                url: '/completed'
+            },
+            {
                 name: 'Создать заказ',
                 url: '/new'
-            }
+            },
         ]
     },
     {
@@ -49,6 +81,14 @@ const MenuLinks:IMenuLinks[] =   [
             {
                 name: 'Все товары',
                 url: '/'
+            },
+            {
+                name: 'Товары в продаже',
+                url: '/stock'
+            },
+            {
+                name: 'Нет в наличии',
+                url: '/out-of-stock'
             },
             {
                 name: 'Добавить товар',
