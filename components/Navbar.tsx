@@ -2,7 +2,7 @@
 
 import {
     Box,
-    Button, ButtonGroup,
+    Button, ButtonGroup, Center,
     Flex, Menu, MenuButton, MenuItem, MenuList,
     Spacer,
     Text
@@ -13,28 +13,45 @@ import {usePathname, useRouter} from "next/navigation";
 import Link from "next/link";
 import {IMenuLink} from "@/utils/interface";
 import MenuLinks from "@/MenuLinks";
-import {CheckIcon} from "@chakra-ui/icons";
+import {useEffect, useState} from "react";
+import {TimeIcon} from "@chakra-ui/icons";
 
 export default function Navbar() {
     return (
-        <Box border={`1px`} borderColor={`gray.300`} shadow={`md`} p={4} rounded={`lg`} mt={4}>
-            <Flex alignItems={`center`}>
-                <Box>
-                    <Text as={`b`}>Панель Администратора</Text>
-                </Box>
-                <Spacer/>
-                <Box>
+        <Box border={`1px`} shadow={`md`} borderColor={`gray.300`} rounded={`lg`} mt={4}>
+            <Box borderBottom={`1px`} borderColor={`gray.300`}>
+                <Flex p={4} alignItems={`center`}>
+                    <Box>
+                        <Text as={`b`}>Панель Администратора</Text>
+                    </Box>
+                    <Spacer/>
+                    <TimeBlock/>
+                    <Spacer/>
+                    <Box>
+                        <ButtonGroup>
+                            <DarkThemeSwitcher variant={`button`}/>
+                            <Button>Настройки профиля</Button>
+                            <SignOutButton/>
+                        </ButtonGroup>
+                    </Box>
+                </Flex>
+            </Box>
+            <Box p={4}>
+                <Center>
                     <NavLinks/>
-                </Box>
-                <Spacer/>
-                <Box>
-                    <ButtonGroup>
-                        <DarkThemeSwitcher variant={`button`}/>
-                        <Button colorScheme={`orange`}>Настройки</Button>
-                        <SignOutButton/>
-                    </ButtonGroup>
-                </Box>
-            </Flex>
+                </Center>
+            </Box>
+        </Box>
+    )
+}
+
+
+const TimeBlock = () => {
+    const [time, setTime] = useState(new Date())
+
+    return (
+        <Box>
+            {time.toLocaleDateString()}
         </Box>
     )
 }

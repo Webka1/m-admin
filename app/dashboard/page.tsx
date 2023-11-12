@@ -1,6 +1,6 @@
 import { createClient } from '@/utils/supabase/server'
 import { cookies } from 'next/headers'
-import AuthButton from "@/components/AuthButton";
+import Stats from "@/components/Dashboard/Stats";
 
 export default async function Index() {
     const cookieStore = cookies()
@@ -13,7 +13,7 @@ export default async function Index() {
 
     return (
         <>
-            Hel(o)
+            <Stats/>
         </>
     )
 }
