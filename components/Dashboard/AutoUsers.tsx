@@ -84,6 +84,7 @@ export default function AutoUsers() {
                     user_city: user.location.city,
                     user_reg_ip: '0.0.0.0',
                     user_last_ip: '0.0.0.0',
+                    user_is_confirmed: true,
                     registred_date: new Date().toLocaleDateString()
                 })
 
@@ -120,7 +121,7 @@ export default function AutoUsers() {
                 <CardBody>
                     <Text mb={4} fontSize={`xl`}>Автоматическое добавление пользователей в БД</Text>
                     <Alert mb={4} rounded={`md`} colorScheme={`orange`}>
-                        Используется только для наполнения БД и дебага
+                        Используется только для наполнения БД и дебага. Обратите внимание, что все пользователи, добавленные в автоматическом режиме сразу подтверждены.
                     </Alert>
                     <Alert mb={4} rounded={`md`} colorScheme={`blue`}>
                         Сначала нажмите "Получить пользователей", затем после загрузки нажмите "Добавить пользователей в БД"
