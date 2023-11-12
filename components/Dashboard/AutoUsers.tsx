@@ -1,14 +1,14 @@
 'use client'
 
 import {
-    Alert,
+    Alert, Box,
     Button,
     Card,
-    CardBody,
+    CardBody, Checkbox, CheckboxGroup,
     FormControl,
     FormHelperText,
     FormLabel,
-    Input,
+    Input, Stack,
     Text, useToast
 } from "@chakra-ui/react";
 import {useState} from "react";
@@ -22,6 +22,9 @@ export default function AutoUsers() {
 
 
     const [usersCount, setUsersCount] = useState(1)
+
+    const [isConfirmed, setIsConfirmed] = useState(true)
+    const [isBanned, setIsBanned] = useState(false)
 
     const [users, setUsers] = useState([])
     const [fetchUsersError, setFetchUsersError] = useState('')
@@ -82,9 +85,10 @@ export default function AutoUsers() {
                     user_birthday: user.dob.date,
                     // @ts-ignore
                     user_city: user.location.city,
+                    user_is_banned: isBanned,
+                    user_is_confirmed: isConfirmed,
                     user_reg_ip: '0.0.0.0',
                     user_last_ip: '0.0.0.0',
-                    user_is_confirmed: true,
                     registred_date: new Date().toLocaleDateString()
                 })
 
@@ -120,8 +124,8 @@ export default function AutoUsers() {
             <Card mt={4}>
                 <CardBody>
                     <Text mb={4} fontSize={`xl`}>Автоматическое добавление пользователей в БД</Text>
-                    <Alert mb={4} rounded={`md`} colorScheme={`orange`}>
-                        Используется только для наполнения БД и дебага. Обратите внимание, что все пользователи, добавленные в автоматическом режиме сразу подтверждены.
+                    <Alert mb={4} rounded={`md`} colorScheme={`red`}>
+                        Используется только для наполнения БД и дебага.
                     </Alert>
                     <Alert mb={4} rounded={`md`} colorScheme={`blue`}>
                         Сначала нажмите "Получить пользователей", затем после загрузки нажмите "Добавить пользователей в БД"
@@ -141,6 +145,14 @@ export default function AutoUsers() {
                         {/*@ts-ignore*/}
                         <Input onChange={(e) => { setUsersCount(e.target.value) }} placeholder={`Например: 10`} type='number' />
                         <FormHelperText>Автоматическая регистрация пользователей.</FormHelperText>
+                        <Stack mt={4} spacing={[1, 5]} direction={['column', 'row']}>
+                            <Checkbox defaultChecked={isConfirmed} onChange={() => { setIsConfirmed(!isConfirmed) }} size='md' colorScheme='green'>
+                                Подтвержденный аккаунт
+                            </Checkbox>
+                            <Checkbox defaultChecked={isBanned} onChange={() => { setIsBanned(!isBanned) }} size='md' colorScheme='red'>
+                                Забаненный аккаунт
+                            </Checkbox>
+                        </Stack>
                     </FormControl>
                     {users.length < 1 ? <Button onClick={fetchUsersFromApi} isLoading={isFetchUsersLoading} mt={4}>Получить пользователей</Button> : <Button colorScheme={`green`} onClick={insertUsers} isLoading={isInsertUsersLoading} mt={4}>Добавить пользователей в БД</Button>}
                 </CardBody>
