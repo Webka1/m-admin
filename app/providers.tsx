@@ -2,6 +2,7 @@
 
 import { CacheProvider } from '@chakra-ui/next-js'
 import {ChakraProvider, useColorMode} from '@chakra-ui/react'
+import {QueryClient, QueryClientProvider} from "react-query";
 
 export function Providers({
                               children
@@ -9,11 +10,15 @@ export function Providers({
     children: React.ReactNode
 }) {
 
+    const queryClient = new QueryClient()
+
     return (
-        <CacheProvider>
-            <ChakraProvider>
-                {children}
-            </ChakraProvider>
-        </CacheProvider>
+        <QueryClientProvider client={queryClient}>
+            <CacheProvider>
+                <ChakraProvider>
+                    {children}
+                </ChakraProvider>
+            </CacheProvider>
+        </QueryClientProvider>
     )
 }

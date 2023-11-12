@@ -7,7 +7,7 @@ const supabase = createBrowserClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, proc
 export default function Stats() {
 
     return(
-        <Box mt={8}>
+        <Box>
             <Text fontSize={`2xl`}>Общая статистика</Text>
             <Card mt={4}>
                 <CardBody>

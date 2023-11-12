@@ -18,7 +18,7 @@ import {TimeIcon} from "@chakra-ui/icons";
 
 export default function Navbar() {
     return (
-        <Box border={`1px`} shadow={`md`} borderColor={`gray.300`} rounded={`lg`} mt={4}>
+        <Box mb={8} border={`1px`} shadow={`md`} borderColor={`gray.300`} rounded={`lg`} mt={4}>
             <Box borderBottom={`1px`} borderColor={`gray.300`}>
                 <Flex p={4} alignItems={`center`}>
                     <Box>

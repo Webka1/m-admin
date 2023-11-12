@@ -1,10 +1,25 @@
-import { createClient } from '@/utils/supabase/server'
-import { cookies } from 'next/headers'
+import {
+    Card,
+    CardBody,
+    Flex,
+    Text
+} from "@chakra-ui/react";
+import AutoUsers from "@/components/Dashboard/AutoUsers";
 
-export default async function Page() {
-    const cookieStore = cookies()
-    const supabase = createClient(cookieStore)
-    const { data: customers } = await supabase.from('customers').select()
-
-    return <pre>{JSON.stringify(customers, null, 2)}</pre>
+export default function Page() {
+    return (
+        <>
+            <Text fontSize={`2xl`}>Добавить нового пользователя</Text>
+            <>
+                <Flex  minWidth={`max-content`} gap={4}>
+                    <AutoUsers/>
+                    <Card>
+                        <CardBody>
+                            Ручная регистрация
+                        </CardBody>
+                    </Card>
+                </Flex>
+            </>
+        </>
+    )
 }
