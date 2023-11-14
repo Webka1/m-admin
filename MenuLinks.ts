@@ -22,11 +22,11 @@ const MenuLinks:IMenuLinks[] =   [
             },
             {
                 name: 'Подтвержденные пользователи',
-                url: '/confirmed'
+                url: '/confirmed?is_confirmed=true'
             },
             {
                 name: 'Неподтвержденные пользователи',
-                url: '/unconfirmed'
+                url: '/confirmed?is_confirmed=false'
             },
             {
                 name: 'Забаненные пользователи',
@@ -35,6 +35,10 @@ const MenuLinks:IMenuLinks[] =   [
             {
                 name: 'Добавить пользователя',
                 url: '/new'
+            },
+            {
+                name: 'Поиск пользователя',
+                url: '/search'
             }
         ]
     },

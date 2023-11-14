@@ -22,7 +22,7 @@ export interface IMenuLinks {
 
 export interface ICustomer {
     id: number,
-    created_at: Date
+    created_at: string
     user_email: string
     user_firstname: string
     user_lastname: string
@@ -34,7 +34,8 @@ export interface ICustomer {
     user_is_confirmed: boolean // подтвердил чел почту или не)
     user_reg_ip: string
     user_last_ip?: string
-    updated_at: Date
+    updated_at: string
+    registred_date: string
 }
 
 export interface IOrder {

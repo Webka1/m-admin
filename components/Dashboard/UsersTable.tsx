@@ -3,6 +3,16 @@
 import {
     Button,
     ButtonGroup,
+    Center,
+    CloseButton,
+    FormControl,
+    FormHelperText,
+    FormLabel,
+    Input,
+    Menu,
+    MenuButton,
+    MenuItem,
+    MenuList,
     Table,
     TableCaption,
     TableContainer,
@@ -15,8 +25,11 @@ import {
     Tr
 } from "@chakra-ui/react";
 import {useState} from "react";
+import {ICustomer} from "@/utils/interface";
+import {EditIcon, LockIcon, UnlockIcon} from "@chakra-ui/icons";
 
-export default function UsersTable({customers}: any) {
+// @ts-ignore
+export default function UsersTable({ customers }) {
     const [startIndex,  setStartIndex] = useState(0)
     const [endIndex,  setEndIndex] = useState(5)
 
@@ -54,9 +67,12 @@ export default function UsersTable({customers}: any) {
 
     return (
         <>
-            <TableContainer mt={4}>
-                <Table variant='simple'>
-                    <TableCaption>
+            <UserTable
+                pagination={
+                    <>
+                        <Center mb={4}>
+                            Данных получено: {customers?.length}
+                        </Center>
                         <ButtonGroup gap='2'>
                             <Button isDisabled={currentPage >= firstIndex} onClick={() => setPage(1)}>В начало</Button>
                             <Button isDisabled={currentPage >= firstIndex} onClick={prevPage}>Назад</Button>
@@ -66,20 +82,12 @@ export default function UsersTable({customers}: any) {
                             <Button isDisabled={currentPage >= pageNumber} onClick={nextPage}>Вперед</Button>
                             <Button isDisabled={currentPage >= pageNumber} onClick={() => setPage(pageNumber)}>В конец</Button>
                         </ButtonGroup>
-                    </TableCaption>
-                    <Thead>
-                        <Tr>
-                            <Th>ID</Th>
-                            <Th>ФИО</Th>
-                            <Th>Почта</Th>
-                            <Th>Телефон</Th>
-                            <Th>Дата регистрации</Th>
-                            <Th>Подтвержден | Бан</Th>
-                            <Th></Th>
-                        </Tr>
-                    </Thead>
-                    <Tbody>
-                        { users?.map((customer: any,  index: number) => (
+                    </>
+                }
+
+                row={
+                    <>
+                        { users?.map((customer: ICustomer,  index: number) => (
                             <Tr key={index}>
                                 <Td>{customer.id}</Td>
                                 <Td>{customer.user_firstname} {customer.user_lastname}</Td>
@@ -99,22 +107,56 @@ export default function UsersTable({customers}: any) {
                                         <Tag colorScheme={`green`}>Нет</Tag>
                                     )}
                                 </Td>
+                                <Td>
+                                    <ButtonGroup>
+                                        <Button colorScheme={`blue`} size={`sm`}><EditIcon/></Button>
+                                        { customer.user_is_banned ? <Button colorScheme={`green`} size={`sm`}><UnlockIcon/></Button> : <Button colorScheme={`orange`} size={`sm`}><LockIcon/></Button> }
+                                        <Button colorScheme={`red`} size={`sm`}><CloseButton/></Button>
+                                    </ButtonGroup>
+                                </Td>
                             </Tr>
                         )) }
-                    </Tbody>
-                    <Tfoot>
-                        <Tr>
-                            <Th>ID</Th>
-                            <Th>ФИО</Th>
-                            <Th>Почта</Th>
-                            <Th>Телефон</Th>
-                            <Th>Дата регистрации</Th>
-                            <Th>Подтвержден | Бан</Th>
-                            <Th></Th>
-                        </Tr>
-                    </Tfoot>
-                </Table>
-            </TableContainer>
+                    </>
+                }
+            />
         </>
+    )
+}
+
+// @ts-ignore
+const UserTable = ({pagination, row}) => {
+    return (
+        <TableContainer mt={4}>
+            <Table variant='simple'>
+                <TableCaption>
+                    {pagination}
+                </TableCaption>
+                <Thead>
+                    <Tr>
+                        <Th>ID</Th>
+                        <Th>ФИО</Th>
+                        <Th>Почта</Th>
+                        <Th>Телефон</Th>
+                        <Th>Дата регистрации</Th>
+                        <Th>Подтвержден | Бан</Th>
+                        <Th></Th>
+                    </Tr>
+                </Thead>
+                <Tbody>
+                    {row}
+                </Tbody>
+                <Tfoot>
+                    <Tr>
+                        <Th>ID</Th>
+                        <Th>ФИО</Th>
+                        <Th>Почта</Th>
+                        <Th>Телефон</Th>
+                        <Th>Дата регистрации</Th>
+                        <Th>Подтвержден | Бан</Th>
+                        <Th></Th>
+                    </Tr>
+                </Tfoot>
+            </Table>
+        </TableContainer>
     )
 }

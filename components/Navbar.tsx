@@ -21,7 +21,9 @@ export default function Navbar() {
             <Box borderBottom={`1px`} borderColor={`gray.300`}>
                 <Flex p={4} alignItems={`center`}>
                     <Box>
-                        <Text as={`b`}>Панель Администратора</Text>
+                        <Link href={`/dashboard`}>
+                            <Text as={`b`}>Панель Администратора</Text>
+                        </Link>
                     </Box>
                     <Spacer/>
                     <TimeBlock/>
@@ -59,8 +61,6 @@ const TimeBlock = () => {
 const NavLinks = () => {
 
     const pathname = usePathname()
-
-    console.log(pathname)
 
     return (
         <ButtonGroup>
