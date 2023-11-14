@@ -27,6 +27,7 @@ export interface ICustomer {
     user_firstname: string
     user_lastname: string
     user_birthday: Date
+    user_phone: string
     user_city?: string // город юзера необзятельное поле
     user_discount: number // пользовательская скидка)
     user_is_banned: boolean

@@ -13,8 +13,7 @@ import {usePathname, useRouter} from "next/navigation";
 import Link from "next/link";
 import {IMenuLink} from "@/utils/interface";
 import MenuLinks from "@/MenuLinks";
-import {useEffect, useState} from "react";
-import {TimeIcon} from "@chakra-ui/icons";
+import {useState} from "react";
 
 export default function Navbar() {
     return (
