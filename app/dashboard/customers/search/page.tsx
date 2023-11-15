@@ -2,10 +2,9 @@
 
 import { createClient } from '@/utils/supabase/client'
 import {Alert, Button, FormControl, FormHelperText, FormLabel, Input, Text} from "@chakra-ui/react";
-import {cookies} from "next/headers";
 import UsersTable from "@/components/Dashboard/UsersTable";
 import {TSearchParams} from "@/utils/props";
-import {useEffect, useState} from "react";
+import {useState} from "react";
 
 export default function Customers(props: TSearchParams) {
     const supabase = createClient()

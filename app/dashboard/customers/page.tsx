@@ -2,7 +2,6 @@ import { createClient } from '@/utils/supabase/server'
 import {Text} from "@chakra-ui/react";
 import {cookies} from "next/headers";
 import UsersTable from "@/components/Dashboard/UsersTable";
-import {ICustomer} from "@/utils/interface";
 
 export default async function Customers() {
     const cookieStore = cookies()

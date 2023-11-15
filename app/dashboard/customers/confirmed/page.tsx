@@ -4,7 +4,6 @@ import { createClient } from '@/utils/supabase/client'
 import {CircularProgress, Text} from "@chakra-ui/react";
 import UsersTable from "@/components/Dashboard/UsersTable";
 import {useSearchParams} from "next/navigation";
-import {cookies} from "next/headers";
 import {useEffect, useState} from "react";
 
 export default function Customers() {

@@ -1,7 +1,7 @@
 import {
     Card,
     CardBody,
-    Flex, Grid,
+    Grid,
     Text
 } from "@chakra-ui/react";
 import AutoUsers from "@/components/Dashboard/AutoUsers";

@@ -1,10 +1,10 @@
 'use client'
 
 import {
-    Alert, Box,
+    Alert,
     Button,
     Card,
-    CardBody, Checkbox, CheckboxGroup,
+    CardBody, Checkbox,
     FormControl,
     FormHelperText,
     FormLabel,
@@ -12,12 +12,10 @@ import {
     Text, useToast
 } from "@chakra-ui/react";
 import {useState} from "react";
-import {QueryClient, useQuery} from "react-query";
 import axios from "axios";
 import {createClient} from "@/utils/supabase/client";
 
 export default function AutoUsers() {
-    const queryClient = new QueryClient()
     const toast = useToast()
 
 
@@ -63,7 +61,6 @@ export default function AutoUsers() {
 
     const [insertUsersError, setInsertUsersError] = useState('')
     const [isInsertUsersLoading, setisInsertUsersLoading] = useState(false)
-    const [currentInsertUsersState, setcurrentInsertUsersState] = useState(0)
 
     const insertUsers = async () => {
         setisInsertUsersLoading(true)

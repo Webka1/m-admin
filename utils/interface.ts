@@ -57,7 +57,7 @@ export interface IOrder {
     delivery_method: string // pickup | courier | pickup_point
     delivery_status: string // waiting_order_confirm | delivery_process | delivered
 
-    order_status: string // created | confirmed | wait_for_pay | in_process | completed
+    order_status: string // created | confirmed | wait_for_pay | in_process | completed | canceled
     total_order_sum: number // финальная стоимость заказа
 }
 
