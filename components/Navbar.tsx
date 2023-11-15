@@ -26,8 +26,6 @@ export default function Navbar() {
                         </Link>
                     </Box>
                     <Spacer/>
-                    <TimeBlock/>
-                    <Spacer/>
                     <Box>
                         <ButtonGroup>
                             <DarkThemeSwitcher variant={`button`}/>
@@ -45,18 +43,6 @@ export default function Navbar() {
         </Box>
     )
 }
-
-
-const TimeBlock = () => {
-    const [time, setTime] = useState(new Date())
-
-    return (
-        <Box>
-            {time.toLocaleDateString()}
-        </Box>
-    )
-}
-
 
 const NavLinks = () => {
 
