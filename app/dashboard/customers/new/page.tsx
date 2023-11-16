@@ -4,7 +4,7 @@ import {
     Grid,
     Text
 } from "@chakra-ui/react";
-import AutoUsers from "@/components/Dashboard/AutoUsers";
+import AutoUsers from "@/components/Dashboard/Customers/AutoUsers";
 
 export default function Page() {
     return (

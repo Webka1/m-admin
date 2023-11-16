@@ -19,6 +19,8 @@ import {
 import {useState} from "react";
 import {ICustomer} from "@/utils/interface";
 import {EditIcon, LockIcon, UnlockIcon} from "@chakra-ui/icons";
+import EditUser from "@/components/Dashboard/Customers/EditUser";
+import BanUser from "@/components/Dashboard/Customers/BanUser";
 
 // @ts-ignore
 export default function UsersTable({ customers }) {
@@ -92,17 +94,11 @@ export default function UsersTable({ customers }) {
                                     ) : (
                                         <Tag colorScheme={`blue`}>Нет</Tag>
                                     )}
-                                    &nbsp;
-                                    {customer.user_is_banned ? (
-                                        <Tag colorScheme={`red`}>Да</Tag>
-                                    ) : (
-                                        <Tag colorScheme={`green`}>Нет</Tag>
-                                    )}
                                 </Td>
                                 <Td>
                                     <ButtonGroup>
-                                        <Button colorScheme={`blue`} size={`sm`}><EditIcon/></Button>
-                                        { customer.user_is_banned ? <Button colorScheme={`green`} size={`sm`}><UnlockIcon/></Button> : <Button colorScheme={`orange`} size={`sm`}><LockIcon/></Button> }
+                                        <EditUser uid={customer.id}/>
+                                        <BanUser is_banned={`${customer.user_is_banned}`} uid={customer.id}/>
                                         <Button colorScheme={`red`} size={`sm`}><CloseButton/></Button>
                                     </ButtonGroup>
                                 </Td>
@@ -130,7 +126,7 @@ const UserTable = ({pagination, row}) => {
                         <Th>Почта</Th>
                         <Th>Телефон</Th>
                         <Th>Дата регистрации</Th>
-                        <Th>Подтвержден | Бан</Th>
+                        <Th>Подтвержден</Th>
                         <Th></Th>
                     </Tr>
                 </Thead>
@@ -144,7 +140,7 @@ const UserTable = ({pagination, row}) => {
                         <Th>Почта</Th>
                         <Th>Телефон</Th>
                         <Th>Дата регистрации</Th>
-                        <Th>Подтвержден | Бан</Th>
+                        <Th>Подтвержден</Th>
                         <Th></Th>
                     </Tr>
                 </Tfoot>

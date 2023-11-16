@@ -2,7 +2,7 @@
 
 import { createClient } from '@/utils/supabase/client'
 import {Alert, Button, FormControl, FormHelperText, FormLabel, Input, Text} from "@chakra-ui/react";
-import UsersTable from "@/components/Dashboard/UsersTable";
+import UsersTable from "@/components/Dashboard/Customers/UsersTable";
 import {TSearchParams} from "@/utils/props";
 import {useState} from "react";
 
