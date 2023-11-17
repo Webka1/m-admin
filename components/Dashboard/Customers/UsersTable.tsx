@@ -57,15 +57,6 @@ export default function UsersTable({ customers, setFromUserTable }: TUserTable) 
         }
     }
 
-
-    const [fromBanButton, setFromBanButton] = useState()
-
-    useEffect(() => {
-        console.log(`Got message from child button (BAN): ${fromBanButton} | Send this message to parent (UserTable)`)
-        setFromUserTable(fromBanButton)
-    }, [fromBanButton])
-
-
     return (
         <>
             <UserTable
@@ -105,7 +96,7 @@ export default function UsersTable({ customers, setFromUserTable }: TUserTable) 
                                 <Td>
                                     <ButtonGroup>
                                         <EditUser uid={customer.id}/>
-                                        <BanUser setFromBanButton={setFromBanButton} is_banned={`${customer.user_is_banned}`} uid={customer.id}/>
+                                        <BanUser setFromUserTable={setFromUserTable} is_banned={`${customer.user_is_banned}`} uid={customer.id}/>
                                         <Button colorScheme={`red`} size={`sm`}><CloseButton/></Button>
                                     </ButtonGroup>
                                 </Td>

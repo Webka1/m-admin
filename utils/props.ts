@@ -9,7 +9,8 @@ export type TSearchParams = {
 export type TBanUser = {
     uid: number,
     is_banned: string,
-    setFromBanButton: any
+    setFromBanButton?: any
+    setFromUserTable?: any
 }
 export type TUserTable = {
     customers: ICustomer[]

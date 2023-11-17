@@ -33,6 +33,7 @@ export default function Customers() {
     useEffect(() => {
         fetchCustomers().finally(() => {
             setIsLoading(false)
+            setFromUserTable('')
         })
     }, [search, fromUserTable])
 

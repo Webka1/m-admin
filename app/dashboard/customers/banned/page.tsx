@@ -29,6 +29,7 @@ export default function Customers() {
         })
 
         console.log(`Got messages from UserTable: `, fromUserTable)
+        setFromUserTable('')
     }, [fromUserTable])
 
     return (

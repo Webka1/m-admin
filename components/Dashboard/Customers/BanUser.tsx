@@ -2,10 +2,10 @@
 import {Button, Tooltip, useToast} from "@chakra-ui/react";
 import {LockIcon, UnlockIcon} from "@chakra-ui/icons";
 import {createClient} from "@/utils/supabase/client";
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import {TBanUser} from "@/utils/props";
 
-export default function ({uid, is_banned, setFromBanButton}: TBanUser) {
+export default function ({uid, is_banned, setFromUserTable}: TBanUser) {
 
     const supabase = createClient()
 
@@ -34,7 +34,7 @@ export default function ({uid, is_banned, setFromBanButton}: TBanUser) {
 
                 setLoading(false)
 
-                setFromBanButton(`user updated | message from child button (BAN)`)
+                setFromUserTable('wek')
             } else {
                 toast({
                     title: 'Ошибка.',
