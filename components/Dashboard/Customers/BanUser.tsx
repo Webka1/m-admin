@@ -3,13 +3,9 @@ import {Button, Tooltip, useToast} from "@chakra-ui/react";
 import {LockIcon, UnlockIcon} from "@chakra-ui/icons";
 import {createClient} from "@/utils/supabase/client";
 import {useEffect, useState} from "react";
+import {TBanUser} from "@/utils/props";
 
-type IProps = {
-    uid: number,
-    is_banned: string,
-}
-
-export default function ({uid, is_banned}: IProps) {
+export default function ({uid, is_banned, setFromBanButton}: TBanUser) {
 
     const supabase = createClient()
 
@@ -22,13 +18,13 @@ export default function ({uid, is_banned}: IProps) {
         try {
             setLoading(true)
             const { error} = await supabase.from('customers').update({
-                user_is_banned: is_banned !== 'true'
+                user_is_banned: isBanned !== 'true'
             }).eq('id', uid)
 
             if(!error) {
                 toast({
                     title: 'Успешно.',
-                    description: "Статус аккаунта изменен. Обновите страницу",
+                    description: "Статус аккаунта изменен.",
                     status: 'success',
                     duration: 2000,
                     isClosable: true,
@@ -37,6 +33,8 @@ export default function ({uid, is_banned}: IProps) {
                 setIsBanned(`${isBanned !== 'true' }`)
 
                 setLoading(false)
+
+                setFromBanButton(`user updated | message from child button (BAN)`)
             } else {
                 toast({
                     title: 'Ошибка.',
@@ -55,11 +53,6 @@ export default function ({uid, is_banned}: IProps) {
             alert(e.message)
         }
     }
-
-    useEffect(() => {
-        console.log(isBanned)
-        console.log(typeof isBanned)
-    }, [isBanned])
 
     return(
         <>

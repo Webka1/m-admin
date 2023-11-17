@@ -17,6 +17,8 @@ export default function Customers() {
     const [customers, setCustomers] = useState([])
     const [isLoading, setIsLoading] = useState(true)
 
+    const [fromUserTable, setFromUserTable] = useState('')
+
     const fetchCustomers = async () => {
         setIsLoading(true)
         const { data: customers } = await supabase.from('customers').select().match({
@@ -32,13 +34,13 @@ export default function Customers() {
         fetchCustomers().finally(() => {
             setIsLoading(false)
         })
-    }, [search])
+    }, [search, fromUserTable])
 
     return (
         <>
             {/*// @ts-ignore*/}
             <Text fontSize={`2xl`}>{searchParams !== 'false' ? 'Подтвержденные' : 'Неподтвержденные'} пользователи</Text>
-            {isLoading ? <CircularProgress isIndeterminate /> : <UsersTable customers={customers}/>}
+            {isLoading ? <CircularProgress isIndeterminate /> : <UsersTable setFromUserTable={setFromUserTable} customers={customers}/>}
         </>
     )
 }

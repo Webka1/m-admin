@@ -16,14 +16,12 @@ import {
     Thead,
     Tr
 } from "@chakra-ui/react";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {ICustomer} from "@/utils/interface";
-import {EditIcon, LockIcon, UnlockIcon} from "@chakra-ui/icons";
 import EditUser from "@/components/Dashboard/Customers/EditUser";
 import BanUser from "@/components/Dashboard/Customers/BanUser";
-
-// @ts-ignore
-export default function UsersTable({ customers }) {
+import {TUserTable} from "@/utils/props";
+export default function UsersTable({ customers, setFromUserTable }: TUserTable) {
     const [startIndex,  setStartIndex] = useState(0)
     const [endIndex,  setEndIndex] = useState(5)
 
@@ -58,6 +56,15 @@ export default function UsersTable({ customers }) {
             setCurrentPage(currentPage + 1)
         }
     }
+
+
+    const [fromBanButton, setFromBanButton] = useState()
+
+    useEffect(() => {
+        console.log(`Got message from child button (BAN): ${fromBanButton} | Send this message to parent (UserTable)`)
+        setFromUserTable(fromBanButton)
+    }, [fromBanButton])
+
 
     return (
         <>
@@ -98,7 +105,7 @@ export default function UsersTable({ customers }) {
                                 <Td>
                                     <ButtonGroup>
                                         <EditUser uid={customer.id}/>
-                                        <BanUser is_banned={`${customer.user_is_banned}`} uid={customer.id}/>
+                                        <BanUser setFromBanButton={setFromBanButton} is_banned={`${customer.user_is_banned}`} uid={customer.id}/>
                                         <Button colorScheme={`red`} size={`sm`}><CloseButton/></Button>
                                     </ButtonGroup>
                                 </Td>

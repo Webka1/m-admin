@@ -10,6 +10,8 @@ export default function Customers() {
     const [customers, setCustomers] = useState([])
     const [isLoading, setIsLoading] = useState(true)
 
+    const [fromUserTable, setFromUserTable] = useState('')
+
     const fetchCustomers = async () => {
         setIsLoading(true)
         const { data: customers } = await supabase.from('customers').select().order('id', { ascending: true })
@@ -22,13 +24,13 @@ export default function Customers() {
         fetchCustomers().finally(() => {
             setIsLoading(false)
         })
-    }, [])
+    }, [fromUserTable])
 
     return (
         <>
             {/*// @ts-ignore*/}
             <Text fontSize={`2xl`}>Все пользователи</Text>
-            {isLoading ? <CircularProgress isIndeterminate /> : <UsersTable customers={customers}/>}
+            {isLoading ? <CircularProgress isIndeterminate /> : <UsersTable setFromUserTable={setFromUserTable} customers={customers}/>}
         </>
     )
 }
