@@ -14,8 +14,12 @@ import {
 import {useState} from "react";
 import {createBrowserClient} from "@supabase/ssr";
 import Link from "next/link";
+import {useSearchParams} from "next/navigation";
 
 export default function PasswordReset() {
+
+    const searchParams = useSearchParams()
+    const url_error = searchParams.get('error_description')
 
     const [newPassword, setNewPassword] = useState<string>('')
     const [error, setError] = useState<string>('')
@@ -45,6 +49,7 @@ export default function PasswordReset() {
                     <Text fontSize={`3xl`} as={`b`}>
                         Смена пароля
                     </Text>
+                    { url_error ? <Alert mt={4} borderRadius={`md`} colorScheme={`red`}>{url_error}</Alert> : '' }
                     <FormControl mt={2}>
                         <FormLabel>Новый пароль</FormLabel>
                         <Input onChange={(e) => { setNewPassword(e.target.value) }} name={`password`} outline={`none`} type='password' placeholder={`********`}/>
