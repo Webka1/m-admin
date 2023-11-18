@@ -4,7 +4,6 @@ import {
     Button,
     ButtonGroup,
     Center,
-    CloseButton,
     Table,
     TableCaption,
     TableContainer,
@@ -18,7 +17,6 @@ import {
 } from "@chakra-ui/react";
 import {useState} from "react";
 import {ICustomer} from "@/utils/interface";
-import EditUser from "@/components/Dashboard/Customers/EditUser";
 import BanUser from "@/components/Dashboard/Customers/BanUser";
 import {TUserTable} from "@/utils/props";
 import DeleteUser from "@/components/Dashboard/Customers/DeleteUser";
@@ -97,8 +95,7 @@ export default function UsersTable({ customers, setFromUserTable }: TUserTable) 
                                 </Td>
                                 <Td>
                                     <ButtonGroup>
-                                        <LookupUser uid={customer.id}/>
-                                        <EditUser uid={customer.id}/>
+                                        <LookupUser setFromUserTable={setFromUserTable} uid={customer.id}/>
                                         <BanUser setFromUserTable={setFromUserTable} is_banned={`${customer.user_is_banned}`} uid={customer.id}/>
                                         <DeleteUser is_deleted={customer.is_deleted} setFromUserTable={setFromUserTable}
                                                     uid={customer.id}/>
