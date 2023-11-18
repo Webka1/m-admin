@@ -36,6 +36,7 @@ export interface ICustomer {
     user_last_ip?: string
     updated_at: string
     registred_date: string
+    is_deleted: boolean
 }
 
 export interface IOrder {

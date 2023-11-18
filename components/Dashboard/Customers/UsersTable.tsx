@@ -16,11 +16,13 @@ import {
     Thead,
     Tr
 } from "@chakra-ui/react";
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import {ICustomer} from "@/utils/interface";
 import EditUser from "@/components/Dashboard/Customers/EditUser";
 import BanUser from "@/components/Dashboard/Customers/BanUser";
 import {TUserTable} from "@/utils/props";
+import DeleteUser from "@/components/Dashboard/Customers/DeleteUser";
+import LookupUser from "@/components/Dashboard/Customers/LookupUser";
 export default function UsersTable({ customers, setFromUserTable }: TUserTable) {
     const [startIndex,  setStartIndex] = useState(0)
     const [endIndex,  setEndIndex] = useState(5)
@@ -95,9 +97,11 @@ export default function UsersTable({ customers, setFromUserTable }: TUserTable) 
                                 </Td>
                                 <Td>
                                     <ButtonGroup>
+                                        <LookupUser uid={customer.id}/>
                                         <EditUser uid={customer.id}/>
                                         <BanUser setFromUserTable={setFromUserTable} is_banned={`${customer.user_is_banned}`} uid={customer.id}/>
-                                        <Button colorScheme={`red`} size={`sm`}><CloseButton/></Button>
+                                        <DeleteUser is_deleted={customer.is_deleted} setFromUserTable={setFromUserTable}
+                                                    uid={customer.id}/>
                                     </ButtonGroup>
                                 </Td>
                             </Tr>

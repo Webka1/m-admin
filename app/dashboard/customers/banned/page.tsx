@@ -16,7 +16,8 @@ export default function Customers() {
         setIsLoading(true)
         const { data: customers } = await supabase.from('customers').select().match({
             // @ts-ignore
-            user_is_banned: true
+            user_is_banned: true,
+            is_deleted: false
         })
 
         // @ts-ignore

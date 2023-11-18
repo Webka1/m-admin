@@ -1,24 +1,24 @@
 'use client'
 import {Button, Tooltip, useToast} from "@chakra-ui/react";
-import {LockIcon, UnlockIcon} from "@chakra-ui/icons";
+import {AddIcon, DeleteIcon, LockIcon, UnlockIcon} from "@chakra-ui/icons";
 import {createClient} from "@/utils/supabase/client";
 import {useState} from "react";
-import {TBanUser} from "@/utils/props";
+import {TBanUser, TDeleteUser} from "@/utils/props";
 
-export default function ({uid, is_banned, setFromUserTable}: TBanUser) {
+export default function ({uid, is_deleted, setFromUserTable}: TDeleteUser) {
 
     const supabase = createClient()
 
     const toast = useToast()
 
-    const [isBanned, setIsBanned] = useState(is_banned)
+    const [isDeleted, setIsDeleted] = useState(is_deleted)
     const [loading, setLoading] = useState(false)
 
-    const changeBanStatus = async () => {
+    const changeDeleteStatus = async () => {
         try {
             setLoading(true)
             const { error} = await supabase.from('customers').update({
-                user_is_banned: isBanned !== 'true'
+                is_deleted: !isDeleted
             }).eq('id', uid)
 
             if(!error) {
@@ -30,7 +30,7 @@ export default function ({uid, is_banned, setFromUserTable}: TBanUser) {
                     isClosable: true,
                 })
 
-                setIsBanned(`${isBanned !== 'true' }`)
+                setIsDeleted(!isDeleted)
 
                 setLoading(false)
 
@@ -56,11 +56,7 @@ export default function ({uid, is_banned, setFromUserTable}: TBanUser) {
 
     return(
         <>
-            {
-                isBanned === 'true' ?
-                    <Tooltip label={`Разбанить`}><Button isLoading={loading} size={`sm`} onClick={changeBanStatus} colorScheme={`green`}><UnlockIcon/></Button></Tooltip> :
-                    <Tooltip label={`Забанить`}><Button isLoading={loading} size={`sm`} onClick={changeBanStatus} colorScheme={`orange`}><LockIcon/></Button></Tooltip>
-            }
+            { isDeleted ? <Tooltip label={`Вернуть`}><Button onClick={changeDeleteStatus} colorScheme={`green`} size={`sm`}><AddIcon/></Button></Tooltip> : <Tooltip label={`Удалить`}><Button onClick={changeDeleteStatus} colorScheme={`red`} size={`sm`}><DeleteIcon/></Button></Tooltip> }
         </>
     )
 }

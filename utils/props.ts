@@ -12,6 +12,12 @@ export type TBanUser = {
     setFromBanButton?: any
     setFromUserTable?: any
 }
+export type TDeleteUser = {
+    uid: number,
+    is_deleted: boolean,
+    setFromBanButton?: any
+    setFromUserTable?: any
+}
 export type TUserTable = {
     customers: ICustomer[]
     setFromUserTable? : any

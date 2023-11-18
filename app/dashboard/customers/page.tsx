@@ -14,7 +14,7 @@ export default function Customers() {
 
     const fetchCustomers = async () => {
         setIsLoading(true)
-        const { data: customers } = await supabase.from('customers').select().order('id', { ascending: true })
+        const { data: customers } = await supabase.from('customers').select().eq('is_deleted', false).order('id', { ascending: true })
 
         // @ts-ignore
         setCustomers(customers)

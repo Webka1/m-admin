@@ -33,7 +33,7 @@ export default function AutoUsers() {
         setIsFetchUsersLoading(true)
 
         try {
-            await axios.get(`https://randomuser.me/api/?results=${usersCount}&inc=dob,email,login,name,location&noinfo`)
+            await axios.get(`https://randomuser.me/api/?results=${usersCount}&inc=dob,email,login,name,location,phone&noinfo`)
                 .then((data) => {
                     setFetchUsersError('')
                     setIsFetchUsersLoading(false)
@@ -86,7 +86,9 @@ export default function AutoUsers() {
                     user_is_confirmed: isConfirmed,
                     user_reg_ip: '0.0.0.0',
                     user_last_ip: '0.0.0.0',
-                    registred_date: new Date().toLocaleDateString()
+                    registred_date: new Date().toLocaleDateString(),
+                    // @ts-ignore
+                    user_phone: `${user.phone}`
                 })
 
                 if(!error) {
