@@ -30,7 +30,7 @@ export default function ResetPasswordModal() {
 
         try {
             const {error} = await supabase.auth.resetPasswordForEmail(email, {
-                redirectTo: `${defaultUrl}/password-reset`
+                redirectTo: `https://m-admin-coral.vercel.app/password-reset` // TODO: 'Поменять если не забуду :)'
             })
             if(error) {
                 setSuccess('')
