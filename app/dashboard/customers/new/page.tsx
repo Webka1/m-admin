@@ -5,6 +5,7 @@ import {
     Text
 } from "@chakra-ui/react";
 import AutoUsers from "@/components/Dashboard/Customers/AutoUsers";
+import AddUser from "@/components/Dashboard/Customers/AddUser";
 
 export default function Page() {
     return (
@@ -12,12 +13,8 @@ export default function Page() {
             <Text fontSize={`2xl`}>Добавить нового пользователя</Text>
             <>
                 <Grid gap={4}>
+                    <AddUser/>
                     <AutoUsers/>
-                    <Card>
-                        <CardBody>
-                            Ручная регистрация
-                        </CardBody>
-                    </Card>
                 </Grid>
             </>
         </>

@@ -12,6 +12,10 @@ import {Alert, Button, Input, useDisclosure} from "@chakra-ui/react";
 import {useState} from "react";
 import {createBrowserClient} from "@supabase/ssr";
 
+const defaultUrl = process.env.VERCEL_URL
+    ? `https://${process.env.VERCEL_URL}`
+    : 'http://localhost:3000'
+
 export default function ResetPasswordModal() {
 
     const { isOpen, onOpen, onClose } = useDisclosure()
@@ -25,7 +29,9 @@ export default function ResetPasswordModal() {
         setIsLoading(true)
 
         try {
-            const {error} = await supabase.auth.resetPasswordForEmail(email)
+            const {error} = await supabase.auth.resetPasswordForEmail(email, {
+                redirectTo: `${defaultUrl}/password-reset`
+            })
             if(error) {
                 setSuccess('')
                 setIsLoading(false)

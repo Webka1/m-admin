@@ -65,6 +65,10 @@ export default function AutoUsers() {
     const insertUsers = async () => {
         setisInsertUsersLoading(true)
 
+        const date = new Date();
+        const formatter = new Intl.DateTimeFormat('en-US', { year: 'numeric', month: '2-digit', day: '2-digit' });
+        const formattedDate = formatter.format(date); // MM-DD-YYYY
+
         const supabase = createClient()
 
         users.map( async (user, index) => {
@@ -86,7 +90,7 @@ export default function AutoUsers() {
                     user_is_confirmed: isConfirmed,
                     user_reg_ip: '0.0.0.0',
                     user_last_ip: '0.0.0.0',
-                    registred_date: new Date().toLocaleDateString(),
+                    registred_date: `${formattedDate}`,
                     // @ts-ignore
                     user_phone: `${user.phone}`
                 })
@@ -120,7 +124,7 @@ export default function AutoUsers() {
 
     return (
         <>
-            <Card mt={4}>
+            <Card mt={4} mb={8}>
                 <CardBody>
                     <Text mb={4} fontSize={`xl`}>Автоматическое добавление пользователей в БД</Text>
                     <Alert mb={4} rounded={`md`} colorScheme={`red`}>

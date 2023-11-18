@@ -33,12 +33,12 @@ const MenuLinks:IMenuLinks[] =   [
                 url: '/banned'
             },
             {
-                name: 'Поиск пользователя',
-                url: '/search'
-            },
-            {
                 name: 'Удаленные пользователи',
                 url: '/deleted'
+            },
+            {
+                name: 'Поиск пользователя',
+                url: '/search'
             },
             {
                 name: 'Добавить пользователя',

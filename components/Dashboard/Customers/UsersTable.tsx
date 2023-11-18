@@ -132,17 +132,6 @@ const UserTable = ({pagination, row}) => {
                 <Tbody>
                     {row}
                 </Tbody>
-                <Tfoot>
-                    <Tr>
-                        <Th>ID</Th>
-                        <Th>ФИО</Th>
-                        <Th>Почта</Th>
-                        <Th>Телефон</Th>
-                        <Th>Дата регистрации</Th>
-                        <Th>Подтвержден</Th>
-                        <Th></Th>
-                    </Tr>
-                </Tfoot>
             </Table>
         </TableContainer>
     )

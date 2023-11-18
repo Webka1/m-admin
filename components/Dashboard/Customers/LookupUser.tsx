@@ -68,7 +68,7 @@ export default function ({uid, setFromUserTable}: IProps) {
                 <Modal isOpen={isOpen} onClose={() => {onClose(); supermegapuperfunction()}}>
                     <ModalOverlay />
                     <ModalContent>
-                        <ModalHeader>Просмотр пользователя | ID: {uid}</ModalHeader>
+                        <ModalHeader>{isEditUser ? 'Редактирование' : 'Просмотр'} пользователя | ID: {uid}</ModalHeader>
                         <ModalCloseButton />
                         <ModalBody>
                             { isLoading ? <CircularProgress isIndeterminate/> : isEditUser ?
@@ -184,7 +184,7 @@ const EditUser = forwardRef(({user, setIsEditUserLoading, setDaiZvukEditUserBlya
 
                 toast({
                     title: 'Успешно.',
-                    description: "Статус аккаунта изменен.",
+                    description: "Аккаунт отредактирован.",
                     status: 'success',
                     duration: 2000,
                     isClosable: true,
