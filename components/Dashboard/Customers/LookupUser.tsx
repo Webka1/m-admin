@@ -190,7 +190,7 @@ const EditUser = forwardRef(({user, setIsEditUserLoading, setDaiZvukEditUserBlya
                     isClosable: true,
                 })
 
-                setDaiZvukEditUserBlyaaaaa('updated userrrr | from child component')
+                setDaiZvukEditUserBlyaaaaa('updated userrrr | from child component' + new Date())
             } else {
                 setIsEditUserLoading(false)
 
@@ -208,6 +208,7 @@ const EditUser = forwardRef(({user, setIsEditUserLoading, setDaiZvukEditUserBlya
             setIsEditUserLoading(false)
             console.log(e)
         }
+        setIsUserEdited(false)
     }
 
     useImperativeHandle(ref, () => ({

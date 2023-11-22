@@ -34,7 +34,7 @@ export default function ({uid, is_banned, setFromUserTable}: TBanUser) {
 
                 setLoading(false)
 
-                setFromUserTable('wek')
+                setFromUserTable('upd ban' + new Date())
             } else {
                 toast({
                     title: 'Ошибка.',

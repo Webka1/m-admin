@@ -33,7 +33,7 @@ export default function UsersTable({ customers, setFromUserTable }: TUserTable) 
     const users = customers?.slice(firstIndex, lastIndex)
     const pageNumber = Math.ceil(customers?.length / usersPerPage)
     // @ts-ignore
-    const numbers = [...Array(pageNumber + 1).keys()]?.slice(1)
+    const numbers = [...Array(pageNumber + 1).keys()].slice(1)
 
     const prevPage = () => {
         if(currentPage !== firstIndex) {

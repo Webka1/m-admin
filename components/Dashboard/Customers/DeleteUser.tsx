@@ -31,10 +31,8 @@ export default function ({uid, is_deleted, setFromUserTable}: TDeleteUser) {
                 })
 
                 setIsDeleted(!isDeleted)
-
+                setFromUserTable('wek' + new Date())
                 setLoading(false)
-
-                setFromUserTable('wek')
             } else {
                 toast({
                     title: 'Ошибка.',
@@ -44,6 +42,7 @@ export default function ({uid, is_deleted, setFromUserTable}: TDeleteUser) {
                     isClosable: true,
                 })
 
+                setIsDeleted(is_deleted)
                 setLoading(false)
                 console.log(error)
             }
@@ -56,7 +55,7 @@ export default function ({uid, is_deleted, setFromUserTable}: TDeleteUser) {
 
     return(
         <>
-            { isDeleted ? <Tooltip label={`Вернуть`}><Button onClick={changeDeleteStatus} colorScheme={`green`} size={`sm`}><AddIcon/></Button></Tooltip> : <Tooltip label={`Удалить`}><Button onClick={changeDeleteStatus} colorScheme={`red`} size={`sm`}><DeleteIcon/></Button></Tooltip> }
+            { isDeleted ? <Tooltip label={`Вернуть`}><Button onClick={changeDeleteStatus} colorScheme={`green`} size={`sm`}><AddIcon/></Button></Tooltip> : <Tooltip label={`Удалить`}><Button isLoading={loading} onClick={changeDeleteStatus} colorScheme={`red`} size={`sm`}><DeleteIcon/></Button></Tooltip> }
         </>
     )
 }
