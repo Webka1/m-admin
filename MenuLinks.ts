@@ -22,11 +22,11 @@ const MenuLinks:IMenuLinks[] =   [
             },
             {
                 name: 'Подтвержденные пользователи',
-                url: '/confirmed?is_confirmed=true'
+                url: '/confirmed'
             },
             {
                 name: 'Неподтвержденные пользователи',
-                url: '/confirmed?is_confirmed=false'
+                url: '/unconfirmed'
             },
             {
                 name: 'Забаненные пользователи',

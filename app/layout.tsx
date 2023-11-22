@@ -11,7 +11,7 @@ const defaultUrl = process.env.VERCEL_URL
 
 export const metadata = {
   metadataBase: new URL(defaultUrl),
-  title: 'Модуль "$$$ADM1NKA$$$',
+  title: process.env.ADMIN_NAME,
   description: 'Для $$$KURS4CH$$$',
 }
 
