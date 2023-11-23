@@ -3,7 +3,7 @@ import {Button, Tooltip, useToast} from "@chakra-ui/react";
 import {AddIcon, DeleteIcon, LockIcon, UnlockIcon} from "@chakra-ui/icons";
 import {createClient} from "@/utils/supabase/client";
 import {useState} from "react";
-import {TBanUser, TDeleteUser} from "@/utils/props";
+import {TDeleteUser} from "@/utils/props";
 
 export default function ({uid, is_deleted, setFromUserTable}: TDeleteUser) {
 

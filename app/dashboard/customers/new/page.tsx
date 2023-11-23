@@ -1,6 +1,4 @@
 import {
-    Card,
-    CardBody,
     Grid,
     Text
 } from "@chakra-ui/react";

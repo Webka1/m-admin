@@ -10,7 +10,6 @@ import {
     Tag,
     Tbody,
     Td,
-    Tfoot,
     Th,
     Thead,
     Tr
