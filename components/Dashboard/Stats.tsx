@@ -1,4 +1,4 @@
-import {Box, Card, CardBody, StatGroup, Tag, Text} from "@chakra-ui/react";
+import {Alert, Box, Card, CardBody, StatGroup, Tag, Text} from "@chakra-ui/react";
 import {Stat, StatHelpText, StatLabel, StatNumber} from "@chakra-ui/stat";
 
 import {createBrowserClient} from "@supabase/ssr";
@@ -9,19 +9,51 @@ export default function Stats() {
     return(
         <Box>
             <Text fontSize={`2xl`}>Общая статистика</Text>
+            <Alert rounded={`md`} status="error" mt={4}>
+                Работает неккоректно. В процессе разработки\доработки
+            </Alert>
             <Card mt={4}>
                 <CardBody>
                     <StatGroup>
                         <TotalCustomers/>
                         <TotalOrders/>
-                        <TotalItems/>
+                        <TotalItems />
                     </StatGroup>
                 </CardBody>
             </Card>
             <Card mt={4}>
                 <CardBody>
                     <StatGroup>
-                        <UsersToday/>
+                        <StatBlock
+                            statLabel={
+                                <>
+                                    Продаж
+                                </>
+                            }
+                            statNumber={
+                                0
+                            }
+                            statHelpText={
+                                <>
+                                    Все время
+                                </>
+                            }
+                        />
+                        <StatBlock
+                            statLabel={
+                                <>
+                                    Продаж
+                                </>
+                            }
+                            statNumber={
+                                0
+                            }
+                            statHelpText={
+                                <>
+                                    Сегодня
+                                </>
+                            }
+                        />
                     </StatGroup>
                 </CardBody>
             </Card>

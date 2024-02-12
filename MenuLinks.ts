@@ -7,7 +7,7 @@ const MenuLinks:IMenuLinks[] =   [
         url: '/dashboard',
     },
     {
-        name: 'Настройки сайта',
+        name: 'Настройки АИС',
         is_single: true,
         url: '/dashboard/site-settings'
     },
@@ -47,7 +47,7 @@ const MenuLinks:IMenuLinks[] =   [
         ]
     },
     {
-        name: 'Заказы',
+        name: 'Интернет-заказы',
         is_single: false,
         prefix: '/orders',
         links: [
@@ -82,7 +82,7 @@ const MenuLinks:IMenuLinks[] =   [
         ]
     },
     {
-        name: 'Товары',
+        name: 'Склад',
         is_single: false,
         prefix: '/items',
         links: [
@@ -99,9 +99,51 @@ const MenuLinks:IMenuLinks[] =   [
                 url: '/out-of-stock'
             },
             {
+                name: 'Рецептурные',
+                url: '/recipe'
+            },
+            {
                 name: 'Добавить товар',
                 url: '/add'
             }
+        ]
+    },
+    {
+        name: 'Поставки',
+        is_single: false,
+        prefix: '/arrivals',
+        links: [
+            {
+                name: 'Все поставки',
+                url: '/all'
+            },
+            {
+                name: 'Новые поставки',
+                url: '/new'
+            },
+            {
+                name: 'Непринятые поставки',
+                url: '/notaccepted'
+            },
+            {
+                name: 'Приемка поставки',
+                url: '/acceptance'
+            },
+        ]
+    },
+    {
+        name: 'Продажи',
+        is_single: false,
+        prefix: '/sales',
+        links: [
+            {
+                name: 'Все продажи',
+                url: '/all',
+            },
+            {
+                name: 'Новая продажа',
+                url: '/new'
+            },
         ]
     }
 ]
