@@ -21,7 +21,7 @@ export default function Navbar() {
                 <Flex p={4} alignItems={`center`}>
                     <Box>
                         <Link href={`/dashboard`}>
-                            <Text as={`b`}>Панель Администратора</Text>
+                            <Text as={`b`}>АИС Аптека</Text>
                         </Link>
                     </Box>
                     <Spacer/>
