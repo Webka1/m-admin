@@ -1,4 +1,4 @@
-import {ICustomer} from "@/utils/interface";
+import { ICustomer } from "@/utils/interface";
 
 export type DarkThemeSwitcherProps = {
     variant: string
@@ -20,5 +20,12 @@ export type TDeleteUser = {
 }
 export type TUserTable = {
     customers: ICustomer[]
-    setFromUserTable? : any
+    setFromUserTable?: any
+}
+
+export type TTable = {
+    data: any[] // peredelat'
+    setFromTable?: any,
+    data_columns: string[],
+    data_actions: any
 }

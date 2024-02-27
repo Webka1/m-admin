@@ -1,6 +1,6 @@
-import {IMenuLinks} from "@/utils/interface";
+import { IMenuLinks } from "@/utils/interface";
 
-const MenuLinks:IMenuLinks[] =   [
+const MenuLinks: IMenuLinks[] = [
     {
         name: 'Главная',
         is_single: true,
@@ -82,7 +82,7 @@ const MenuLinks:IMenuLinks[] =   [
         ]
     },
     {
-        name: 'Склад',
+        name: 'Товары',
         is_single: false,
         prefix: '/items',
         links: [
@@ -106,6 +106,21 @@ const MenuLinks:IMenuLinks[] =   [
                 name: 'Добавить товар',
                 url: '/add'
             }
+        ]
+    },
+    {
+        name: 'Cклад',
+        is_single: false,
+        prefix: '/storage',
+        links: [
+            {
+                name: 'Список складов',
+                url: '/all'
+            },
+            {
+                name: 'Добавить склад',
+                url: '/new'
+            },
         ]
     },
     {

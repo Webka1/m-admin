@@ -35,8 +35,6 @@ export default function Login() {
     }
   }
 
-  // test
-
   useEffect(() => {
     getAuthInfo()
   }, [])
