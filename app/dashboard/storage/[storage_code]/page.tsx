@@ -1,13 +1,14 @@
 'use client'
 import { createClient } from "@/utils/supabase/client";
 import { useEffect, useState } from "react";
-import { Box, Button, CircularProgress, Text } from "@chakra-ui/react";
+import { Box, Button, ButtonGroup, CircularProgress, Text } from "@chakra-ui/react";
 import UsersTable from "@/components/Dashboard/Customers/UsersTable";
 import Loader from "@/components/Dashboard/Loader";
 import DataTable from "@/components/Dashboard/Table/DataTable";
 import TableEmpty from "@/components/Dashboard/Table/TableEmpty";
-import { RepeatIcon } from "@chakra-ui/icons";
+import { ArrowBackIcon, RepeatIcon } from "@chakra-ui/icons";
 import Link from "next/link";
+import TableAddItem from "@/components/Dashboard/Table/TableAddItem";
 
 export default function viewStorage({ params }: { params: { storage_code: string } }) {
 
@@ -52,19 +53,6 @@ export default function viewStorage({ params }: { params: { storage_code: string
                 sell_price: item.price
             }
         }))
-
-        // data?.map((item: any) => {
-        //     console.log(item)
-        //     // // @ts-ignore
-        //     // setItemsInStorage((prev) => [...prev, {
-        //     //     id: item.id,
-        //     //     name: item.item_sku.item_title,
-        //     //     sku: item.item_sku.sku,
-        //     //     storage_code: item.storage_code,
-        //     //     quantity: item.quantity,
-        //     //     price: item.price
-        //     // }])
-        // })
     }
 
 
@@ -82,9 +70,12 @@ export default function viewStorage({ params }: { params: { storage_code: string
     return (
         <>
             <Box mb={3}>
-                <Link href={'/dashboard/storage/all'}>
-                    <Button size={`sm`}>Назад</Button>
-                </Link>
+                <ButtonGroup>
+                    <Link href={'/dashboard/storage/all'}>
+                        <Button size={`sm`}><ArrowBackIcon /> Назад</Button>
+                    </Link>
+                    <TableAddItem setFromStorageTable={setFromStorageTable} current_storage={params.storage_code} />
+                </ButtonGroup>
             </Box>
             <Text fontSize={`2xl`}>Обзор склада: {storage} {isLoading ? <><Button disabled={true} size={`xs`} isLoading></Button></> : <><Button size={`xs`} onClick={fetchAll}><RepeatIcon /></Button></>}</Text>
             {isLoading ?

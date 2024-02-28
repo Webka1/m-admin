@@ -110,18 +110,8 @@ const MenuLinks: IMenuLinks[] = [
     },
     {
         name: 'Cклад',
-        is_single: false,
-        prefix: '/storage',
-        links: [
-            {
-                name: 'Список складов',
-                url: '/all'
-            },
-            {
-                name: 'Добавить склад',
-                url: '/new'
-            },
-        ]
+        is_single: true,
+        url: '/dashboard/storage/all',
     },
     {
         name: 'Поставки',
