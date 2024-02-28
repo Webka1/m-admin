@@ -85,16 +85,20 @@ export default function DataTable({ data, setFromTable, data_columns, data_actio
                                     ))}
 
 
-                                    <Td>
-                                        <ButtonGroup>
-                                            {data_actions?.map((action: any, index: number) => (
-                                                <Button colorScheme={action.color} key={index} size={`sm`} onClick={() => setFromTable({
-                                                    action: action.action,
-                                                    id: column.id
-                                                })}>{action.name}</Button>
-                                            ))}
-                                        </ButtonGroup>
-                                    </Td>
+                                    {data_actions?.length ?
+                                        <Td>
+                                            <ButtonGroup>
+                                                {data_actions?.map((action: any, index: number) => (
+                                                    <Button colorScheme={action.color} key={index} size={`sm`} onClick={() => setFromTable({
+                                                        action: action.action,
+                                                        id: column.storage_code || column.id
+                                                    })}>{action.name}</Button>
+                                                ))}
+                                            </ButtonGroup>
+                                        </Td>
+                                        :
+                                        null
+                                    }
                                 </Tr>
                             ))
                         }

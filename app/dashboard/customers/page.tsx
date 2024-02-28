@@ -1,9 +1,10 @@
 'use client'
 
 import { createClient } from '@/utils/supabase/client'
-import {CircularProgress, Text} from "@chakra-ui/react";
+import { CircularProgress, Text } from "@chakra-ui/react";
 import UsersTable from "@/components/Dashboard/Customers/UsersTable";
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
+import Loader from '@/components/Dashboard/Loader';
 
 export default function Customers() {
     const supabase = createClient()
@@ -31,7 +32,7 @@ export default function Customers() {
         <>
             {/*// @ts-ignore*/}
             <Text fontSize={`2xl`}>Все пользователи</Text>
-            {isLoading ? <CircularProgress isIndeterminate /> : <UsersTable setFromUserTable={setFromUserTable} customers={customers}/>}
+            {isLoading ? <Loader /> : <UsersTable setFromUserTable={setFromUserTable} customers={customers} />}
         </>
     )
 }

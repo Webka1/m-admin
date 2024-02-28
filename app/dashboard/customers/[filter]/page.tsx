@@ -1,8 +1,9 @@
 'use client'
-import {createClient} from "@/utils/supabase/client";
-import {useEffect, useState} from "react";
-import {CircularProgress, Text} from "@chakra-ui/react";
+import { createClient } from "@/utils/supabase/client";
+import { useEffect, useState } from "react";
+import { CircularProgress, Text } from "@chakra-ui/react";
 import UsersTable from "@/components/Dashboard/Customers/UsersTable";
+import Loader from "@/components/Dashboard/Loader";
 
 export default function FilterCustomers({ params }: { params: { filter: string } }) {
 
@@ -15,7 +16,7 @@ export default function FilterCustomers({ params }: { params: { filter: string }
     async function fetchUsers() {
         setIsLoading(true)
         try {
-            if(params.filter == 'banned') {
+            if (params.filter == 'banned') {
                 setPageTitle('Забаненные')
                 // @ts-ignore
                 const { data: customers } = await supabase.from('customers').select().match({
@@ -26,7 +27,7 @@ export default function FilterCustomers({ params }: { params: { filter: string }
 
                 // @ts-ignore
                 setCustomers(customers)
-            } else if(params.filter == 'deleted') {
+            } else if (params.filter == 'deleted') {
                 setPageTitle('Удаленные')
                 // @ts-ignore
                 const { data: customers } = await supabase.from('customers').select().match({
@@ -36,7 +37,7 @@ export default function FilterCustomers({ params }: { params: { filter: string }
 
                 // @ts-ignore
                 setCustomers(customers)
-            } else if(params.filter == 'confirmed') {
+            } else if (params.filter == 'confirmed') {
                 setPageTitle('Подтвержденные')
                 // @ts-ignore
                 const { data: customers } = await supabase.from('customers').select().match({
@@ -47,7 +48,7 @@ export default function FilterCustomers({ params }: { params: { filter: string }
 
                 // @ts-ignore
                 setCustomers(customers)
-            } else if(params.filter == 'unconfirmed') {
+            } else if (params.filter == 'unconfirmed') {
                 setPageTitle('Неподтвержденные')
                 // @ts-ignore
                 const { data: customers } = await supabase.from('customers').select().match({
@@ -82,7 +83,7 @@ export default function FilterCustomers({ params }: { params: { filter: string }
     return (
         <>
             <Text fontSize={`2xl`}>{pageTitle} пользователи</Text>
-            {isLoading ? <CircularProgress isIndeterminate /> : customers ? <UsersTable setFromUserTable={setFromUserTable} customers={customers}/> : ''}
+            {isLoading ? <Loader /> : customers ? <UsersTable setFromUserTable={setFromUserTable} customers={customers} /> : ''}
         </>
     )
 }

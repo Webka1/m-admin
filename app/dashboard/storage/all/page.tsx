@@ -1,12 +1,13 @@
 'use client'
 
 import { createClient } from '@/utils/supabase/client'
-import { Button, Progress, Text } from "@chakra-ui/react";
-import UsersTable from "@/components/Dashboard/Customers/UsersTable";
+import { Button, Text } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import DataTable from '@/components/Dashboard/Table/DataTable'
-import { DeleteIcon, EditIcon, RepeatIcon, SpinnerIcon } from '@chakra-ui/icons';
+import { RepeatIcon } from '@chakra-ui/icons';
 import { useRouter } from 'next/navigation';
+import Loader from '@/components/Dashboard/Loader';
+import TableEmpty from '@/components/Dashboard/Table/TableEmpty';
 
 export default function Storage() {
 
@@ -39,6 +40,9 @@ export default function Storage() {
         } else {
             // @ts-ignore
             if (fromStorageTable.action === 'view') {
+
+                console.log(fromStorageTable)
+
                 // @ts-ignore
                 router.push(`/dashboard/storage/${fromStorageTable.id}`)
             } else {
@@ -50,13 +54,11 @@ export default function Storage() {
 
     return (
         <>
-            {/*// @ts-ignore*/}
             <Text fontSize={`2xl`}>Все склады {isLoading ? <><Button disabled={true} size={`xs`} isLoading></Button></> : <><Button size={`xs`} onClick={fetchStorages}><RepeatIcon /></Button></>}</Text>
-            {isLoading ? <Progress mt={2} size={`sm`} colorScheme='gray' isIndeterminate /> : storages.length < 1 ?
-                <>
-                    <Text>Склады не найдены</Text>
-                </> :
-                <>
+            {isLoading ?
+                <Loader />
+                : storages.length < 1 ?
+                    <TableEmpty /> :
                     <DataTable data={storages} setFromTable={setFromStorageTable} data_columns={[
                         'ID',
                         'Название склада',
@@ -69,7 +71,6 @@ export default function Storage() {
                             color: 'blue'
                         },
                     ]} />
-                </>
             }
         </>
     )
