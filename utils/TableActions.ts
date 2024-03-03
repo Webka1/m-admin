@@ -15,3 +15,11 @@ export const StorageActions = [
         color: 'red'
     }
 ]
+
+export const ArrivalsActions = [
+    {
+        name: 'Посмотреть поставку',
+        action: 'view',
+        color: 'blue'
+    }
+]

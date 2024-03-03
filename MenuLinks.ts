@@ -91,16 +91,8 @@ const MenuLinks: IMenuLinks[] = [
                 url: '/'
             },
             {
-                name: 'Товары в продаже',
-                url: '/stock'
-            },
-            {
-                name: 'Нет в наличии',
-                url: '/out-of-stock'
-            },
-            {
-                name: 'Рецептурные',
-                url: '/recipe'
+                name: 'Товары на складе',
+                url: '/storage'
             },
             {
                 name: 'Добавить товар',
@@ -120,7 +112,7 @@ const MenuLinks: IMenuLinks[] = [
         links: [
             {
                 name: 'Все поставки',
-                url: '/all'
+                url: '/'
             },
             {
                 name: 'Новые поставки',
